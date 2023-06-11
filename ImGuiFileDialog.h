@@ -1234,6 +1234,7 @@ public:
     std::string puDLGdefaultExt;
 
 public:
+	const FilterInfos& GetSelectedFilter() const;
     void ParseFilters(const char* vFilters);                                                                                                          // Parse filter syntax, detect and parse filter collection
     void SetSelectedFilterWithExt(const std::string& vFilter);                                                                                        // Select filter
     bool prFillFileStyle(std::shared_ptr<FileInfos> vFileInfos) const;                                                                                // fill with the good style
@@ -1244,8 +1245,7 @@ public:
     void ClearFilesStyle();                                                                                                                           // clear prFileStyle
     bool IsCoveredByFilters(const FileInfos& vFileInfos, bool vIsCaseInsensitive) const;                                 // check if current file extention (vExt) is covered by current filter, or by regex (vNameExt)
     float GetFilterComboBoxWidth() const;                                                                                                             // will return the current combo box widget width
-    bool DrawFilterComboBox(FileDialogInternal& vFileDialogInternal);                                                                                 // draw the filter combobox
-    FilterInfos GetSelectedFilter() const;                                                                                                            // get the current selected filter
+    bool DrawFilterComboBox(FileDialogInternal& vFileDialogInternal);                                                                                 // draw the filter combobox 	// get the current selected filter
     std::string ReplaceExtentionWithCurrentFilter(const std::string& vFile) const;                                                                    // replace the extention of the current file by the selected filter
     void SetDefaultFilterIfNotDefined();                                                                                                              // define the first filter if no filter is selected
 };

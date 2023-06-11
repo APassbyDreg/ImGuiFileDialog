@@ -909,6 +909,10 @@ IGFD_API std::string IGFD::FilterInfos::transformAsteriskBasedFilterToRegex(cons
 
 #pragma region FilterManager
 
+IGFD_API const IGFD::FilterInfos& IGFD::FilterManager::GetSelectedFilter() const {
+	return prSelectedFilter;
+}
+
 IGFD_API void IGFD::FilterManager::ParseFilters(const char* vFilters) {
     prParsedFilters.clear();
 
@@ -1285,10 +1289,6 @@ IGFD_API bool IGFD::FilterManager::DrawFilterComboBox(FileDialogInternal& vFileD
         return needToApllyNewFilter;
     }
     return false;
-}
-
-IGFD_API IGFD::FilterInfos IGFD::FilterManager::GetSelectedFilter() const {
-    return prSelectedFilter;
 }
 
 // todo a test
@@ -1680,7 +1680,7 @@ IGFD_API void IGFD::FileManager::AddFile(const FileDialogInternal& vFileDialogIn
         }
     }
 
-    if (infos->FinalizeFileTypeParsing(vFileDialogInternal.puFilterManager.prSelectedFilter.count_dots)) {
+    if (infos->FinalizeFileTypeParsing(vFileDialogInternal.puFilterManager.GetSelectedFilter().count_dots)) {
         if (!vFileDialogInternal.puFilterManager.IsCoveredByFilters(*infos.get(), (vFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_CaseInsensitiveExtention) != 0)) {
             return;
         }
